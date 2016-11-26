@@ -1,0 +1,15 @@
+<p>
+  Home works!
+</p>
+<!-- <h4>{{ title1 }}</h4>
+<h5>{{ title2 }}</h5>
+<h6>{{ subtitle }}</h6> -->
+<ul>
+    <li *ngFor="let item of this.performances">
+      {{ item.dateTime | date }}
+      @ {{ item.dateTime | date:'shortTime' }}
+      Cast: {{ item.cast }}
+    </li>
+</ul>
+
+<app-login></app-login>
