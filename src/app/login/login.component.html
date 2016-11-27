@@ -1,8 +1,24 @@
-<button class="mdl-button mdl-js-button mdl-button--raised" (click)='FBLogin()'> Login with fb </button>
+<header class="demo-drawer-header">
+  <img src="images/user.jpg" class="demo-avatar">
+  <div class="demo-avatar-dropdown">
+    <span>Login with fb</span>
+    <div class="mdl-layout-spacer"></div>
+    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"  (click)='FBLogin()'> <i class="fa fa-facebook-official" aria-hidden="true"></i> </button>
+    <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+      <i class="material-icons" role="presentation">arrow_drop_down</i>
+      <span class="visuallyhidden">Dropdown options from login</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
+      <li class="mdl-menu__item">hello@example.com</li>
+      <li class="mdl-menu__item">info@example.com</li>
+      <li class="mdl-menu__item"><i class="material-icons">add</i>Add another account...</li>
+    </ul>
+  </div>
+</header>
 
-<h3>{{ username }}</h3>
+<!-- <h3>{{ username }}</h3>
 
 <nav class="mdl-navigation">
    <a class="mdl-navigation__link" [routerLink]="['/']">Home</a>
    <a class="mdl-navigation__link" [routerLink]="['/user']">User</a>
-</nav>
+</nav> -->

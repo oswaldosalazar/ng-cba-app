@@ -10,7 +10,7 @@ import {FacebookService, FacebookLoginResponse} from 'ng2-facebook-sdk/dist';
 export class AppComponent {
   title1 = 'Colorado Ballet Academy';
   title2 = 'The Nutcracker'
-  subtitle = 'Parent Information Packet 2016'
+  subtitle = 'Parent Information Packet'
 
   constructor() { }
 

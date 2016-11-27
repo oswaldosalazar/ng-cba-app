@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
                                    };
     this.fb.init(fbParams);
   }
-  
+
 
   FBLogin(): void {
     let username : string = '';
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
         console.log('FB userID: ', userId);
         let params = new Array<string>();
         this.fb.api("/me?fields=name,gender")
-          .then(function(user) {
+          .then( (user) => {
             // console.log(user)
             user.picture = "https://graph.facebook.com/" + userId + "/picture?type=large";
             console.log(user.picture);
