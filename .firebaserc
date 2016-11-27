@@ -1,6 +1,5 @@
 {
   "projects": {
-    "dev": "cba-app",
     "default": "cba-app"
   }
 }
