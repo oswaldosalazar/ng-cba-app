@@ -1,43 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { Observable }     from 'rxjs/Observable';
-import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
+import { FacebookService, FacebookLoginStatus } from 'ng2-facebook-sdk/dist';
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
-  private performancesUrl = 'https://immense-basin-54112.herokuapp.com/api/performances';
-  performances = ['array'];
 
-  constructor (private http: Http) {}
+export class HomeComponent {
+  constructor(private fb: FacebookService) { }
 
-  getPerformances(): Promise<any> {
-    return this.http.get(this.performancesUrl)
-               .toPromise()
-               .then(response => {
-                 return response.json();
-               })
-               .catch(this.handleError);
+  fbStatus : boolean = false;
 
-
-  }
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
-    return Promise.reject(error.message || error);
-  }
-
-
-
-  ngOnInit() {
-    this.getPerformances()
-    .then((data) => {
-      this.performances = data
+  statusFunction(): void {
+    // console.log(this.status)
+    this.fb.getLoginStatus()
+    .then((response) => {
+      if(response.status === 'unknown'){
+        this.fbStatus = false;
+      } else {
+        this.fbStatus = true;
+      }
+      console.log(this.fbStatus);
     })
   }
-
+  ngOnInit() {
+    this.statusFunction()
+  }
 }

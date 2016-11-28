@@ -12,6 +12,10 @@ import { Injectable } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
+  username : string = 'Login with fb';
+  picture : string = './assets/images/user.jpg';
+  fbStatus: boolean = false;
+
   constructor(private fb: FacebookService) {
     let fbParams: FacebookInitParams = {
                                    appId: '1291122410908103',
@@ -23,8 +27,6 @@ export class LoginComponent implements OnInit {
 
 
   FBLogin(): void {
-    let username : string = '';
-    let picture : string = '';
     let permissions = new Array<string>();
 
     permissions = ['public_profile'];
@@ -36,12 +38,10 @@ export class LoginComponent implements OnInit {
         let params = new Array<string>();
         this.fb.api("/me?fields=name,gender")
           .then( (user) => {
-            // console.log(user)
-            user.picture = "https://graph.facebook.com/" + userId + "/picture?type=large";
-            console.log(user.picture);
-            username = user.name;
-            picture = user.picture;
-            console.log(username)
+            this.picture = "https://graph.facebook.com/" + userId + "/picture?type=large";
+            this.username = user.name;
+            this.fbStatus = true;
+            console.log(this.username)
             return user
           })
           .catch(function(error){
