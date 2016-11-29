@@ -18,9 +18,11 @@
 <h6>Upcoming activity for {{selectedStudent}}</h6>
 
 <div class="mdl-grid demo-content">
-  <div *ngFor="let item of this.performancesList" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-        {{ item.dateTime | date }}
-        @ {{ item.dateTime | date:'shortTime' }}
-        Cast: {{ item.cast }}
+  <div *ngFor="let item of this.performancesList | namePipe:selectedStudent" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+    {{ item.name }}
+    {{ item.scene }}
+    {{ item.dateTime | date }}
+    @ {{ item.dateTime | date:'shortTime' }}
+    Cast: {{ item.cast }}
   </div>
 </div>

@@ -5,6 +5,7 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { PerformancesService } from '../performances.service';
+import { NamePipe } from '../name.pipe';
 
 @Component({
   selector: 'app-students',
@@ -59,6 +60,7 @@ export class StudentsComponent implements OnInit {
       this.allNames = this.allNames.filter ( (elem, pos) => {
         return this.allNames.indexOf(elem) === pos
       })
+      this.allNames = this.allNames.sort();
     })
     this.getPerformances();
   }

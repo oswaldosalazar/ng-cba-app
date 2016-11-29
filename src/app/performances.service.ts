@@ -8,7 +8,7 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class PerformancesService {
 
-  private performancesUrl = 'https://immense-basin-54112.herokuapp.com/api/performances';
+  private performancesUrl = 'https://immense-basin-54112.herokuapp.com/api/performancesStudents';
   performances = [];
 
   constructor(private http: Http) { }
