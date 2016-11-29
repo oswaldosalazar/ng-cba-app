@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FacebookService, FacebookInitParams, FacebookLoginResponse } from 'ng2-facebook-sdk/dist';
+import { FacebookService, FacebookInitParams, FacebookLoginResponse, FacebookLoginStatus } from 'ng2-facebook-sdk/dist';
 import { Injectable } from '@angular/core';
 
 @Injectable()
@@ -14,7 +14,8 @@ export class LoginComponent implements OnInit {
 
   username : string = 'Login with fb';
   picture : string = './assets/images/user.jpg';
-  fbStatus: boolean = false;
+  userId: string;
+  fbStatus: boolean = true;
 
   constructor(private fb: FacebookService) {
     let fbParams: FacebookInitParams = {
@@ -33,15 +34,14 @@ export class LoginComponent implements OnInit {
     this.fb.login(permissions).then(
       (response: FacebookLoginResponse) => {
         console.log(response);
-        let userId = response.authResponse.userID;
-        console.log('FB userID: ', userId);
+        this.userId = response.authResponse.userID;
+        console.log('FB userID: ', this.userId);
         let params = new Array<string>();
         this.fb.api("/me?fields=name,gender")
           .then( (user) => {
-            this.picture = "https://graph.facebook.com/" + userId + "/picture?type=large";
+            this.picture = "https://graph.facebook.com/" + this.userId + "/picture?type=large";
             this.username = user.name;
             this.fbStatus = true;
-            console.log(this.username)
             return user
           })
           .catch(function(error){
@@ -49,10 +49,26 @@ export class LoginComponent implements OnInit {
           }),
       (error: any) => console.error(error)
     });
+    this.fb.getLoginStatus()
+    .then((response) => {
+      if(response.status === 'unknown'){
+        this.fbStatus = false;
+      } else {
+        this.fbStatus = true;
+      }
+      console.log(this.fbStatus);
+    })
   }
 
   ngOnInit() {
-
+    console.log('From init', this.userId, this.fbStatus)
+    if(!this.fbStatus){
+      this.picture = './assets/images/user.jpg';
+      this.username = 'Login with fb';
+    } else {
+      this.picture = "https://graph.facebook.com/" + this.userId + "/picture?type=large";
+      this.username = this.username;
+    }
   }
 
 }

@@ -9,6 +9,7 @@ import { UserComponent } from './user/user.component';
 import { routing } from './app.routes';
 import { HomeComponent } from './home/home.component';
 import { AllShowsComponent } from './all-shows/all-shows.component';
+import { StudentsComponent } from './students/students.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AllShowsComponent } from './all-shows/all-shows.component';
     LoginComponent,
     UserComponent,
     HomeComponent,
-    AllShowsComponent
+    AllShowsComponent,
+    StudentsComponent
   ],
   imports: [
     BrowserModule,
