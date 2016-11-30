@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { AllShowsComponent } from './all-shows/all-shows.component';
 import { StudentsComponent } from './students/students.component';
 import { NamePipe } from './name.pipe';
+import { Typeahead } from '../assets/ng2-typeahead/src/ng2-typeahead';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { NamePipe } from './name.pipe';
     HomeComponent,
     AllShowsComponent,
     StudentsComponent,
-    NamePipe
+    NamePipe,
+    Typeahead
   ],
   imports: [
     BrowserModule,

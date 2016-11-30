@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { PerformancesService } from '../performances.service';
 import { NamePipe } from '../name.pipe';
+import { Typeahead } from 'ng2-typeahead';
 
 @Component({
   selector: 'app-students',
@@ -61,6 +62,7 @@ export class StudentsComponent implements OnInit {
         return this.allNames.indexOf(elem) === pos
       })
       this.allNames = this.allNames.sort();
+      console.log(this.allNames)
     })
     this.getPerformances();
   }
