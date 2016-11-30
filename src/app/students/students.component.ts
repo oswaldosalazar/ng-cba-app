@@ -15,6 +15,7 @@ import { NamePipe } from '../name.pipe';
   providers: [PerformancesService, StudentsService]
 })
 export class StudentsComponent implements OnInit {
+
   private studentsUrl = 'https://immense-basin-54112.herokuapp.com/api/students';
   students = [];
   allNames = [];

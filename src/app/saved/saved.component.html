@@ -1,6 +1,23 @@
-<div class="mdl-layout__header-row">
-  <button *ngFor="let student of savedStudentsList" class="mdl-chip mdl-chip--deletable">
-    <span class="mdl-chip__text">{{ student }}</span>
+<span *ngFor="let singleStudent of savedStudentsList" class="mdl-layout__header-row">
+  <button class="mdl-chip mdl-chip--deletable" (click) = "clickedStudent(singleStudent)">
+    <span class="mdl-chip__text">{{ singleStudent }}</span>
     <button type="button" class="mdl-chip__action"><i class="material-icons">cancel</i></button>
   </button>
+</span>
+
+<div class="mdl-layout__header-row">
+  <h6>Upcoming activity for:</h6>
+</div>
+<div class="mdl-layout__header-row">
+  <h5>{{selectedStudent}}</h5>
+  <div class="mdl-layout-spacer"></div>
+</div>
+
+<div class="mdl-grid demo-content">
+  <div *ngFor="let savedStudent of this.performancesList | namePipe:selectedStudent" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+    Cast: {{ savedStudent.cast }}
+    Scene: {{ savedStudent.scene }}
+    {{ savedStudent.dateTime | date }}
+    @ {{ savedStudent.dateTime | date:'shortTime' }}
+  </div>
 </div>
