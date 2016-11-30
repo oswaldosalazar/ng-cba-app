@@ -1,7 +1,9 @@
-<div>
+<div class="mdl-layout__header-row">
   <label>
-    <h5>Select a student from the list:</h5>
+    <h6>Select a student from the list:</h6>
   </label>
+</div>
+<div class="mdl-layout__header-row">
   <select [(ngModel)]="selectedStudent">
     <option></option>
     <option *ngFor="let student of allNames; let i = index;" [ngValue]="allNames[i]">
@@ -9,7 +11,19 @@
     </option>
   </select>
 </div>
-<h6>Upcoming activity for {{selectedStudent}}</h6>
+
+<div class="mdl-layout__header-row">
+  <h6>Upcoming activity for:</h6>
+</div>
+<div class="mdl-layout__header-row">
+  <h5>{{selectedStudent}}</h5>
+  <div class="mdl-layout-spacer"></div>
+  <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+    <i class="material-icons">add</i>
+  </button>
+</div>
+
+
 <div class="mdl-grid demo-content">
   <div *ngFor="let student of this.performancesList | namePipe:selectedStudent" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
     Cast: {{ student.cast }}

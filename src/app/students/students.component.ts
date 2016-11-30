@@ -45,7 +45,6 @@ export class StudentsComponent implements OnInit {
   getPerformances() {
     this.performances.getPerformances()
     .then((data) => {
-      console.log(data)
       this.performancesList = data;
     })
   }
@@ -61,7 +60,6 @@ export class StudentsComponent implements OnInit {
         return this.allNames.indexOf(elem) === pos
       })
       this.allNames = this.allNames.sort();
-      console.log(this.allNames)
     })
     this.getPerformances();
   }
