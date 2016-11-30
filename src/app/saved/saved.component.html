@@ -1,8 +1,8 @@
 <span *ngFor="let singleStudent of savedStudentsList" class="mdl-layout__header-row">
-  <button class="mdl-chip mdl-chip--deletable" (click) = "clickedStudent(singleStudent)">
+  <span class="mdl-chip mdl-chip--deletable" (click) = "clickedStudent(singleStudent)">
     <span class="mdl-chip__text">{{ singleStudent }}</span>
-    <button type="button" class="mdl-chip__action"><i class="material-icons">cancel</i></button>
-  </button>
+    <button type="button" class="mdl-chip__action"><i class="material-icons" (click) = "deleteStudent(singleStudent)">cancel</i></button>
+  </span>
 </span>
 
 <div class="mdl-layout__header-row">

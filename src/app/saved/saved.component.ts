@@ -28,6 +28,16 @@ export class SavedComponent implements OnInit {
   clickedStudent(student) {
     this.selectedStudent = student;
   }
+  deleteStudent(student) {
+    let index = this.savedStudentsList.indexOf(student, 0);
+    if (index > -1) {
+      this.savedStudentsList.splice(index, 1);
+    }
+    console.log(this.savedStudentsList)
+    if(this.savedStudentsList.length === 0) {
+      this.selectedStudent = null;
+    }
+  }
 
   ngOnInit() {
     this.savedStudentsList = this.savedStudents.sendSavedStudents();
