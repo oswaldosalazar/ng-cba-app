@@ -18,11 +18,10 @@
 <div class="mdl-layout__header-row">
   <h5>{{selectedStudent}}</h5>
   <div class="mdl-layout-spacer"></div>
-  <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+  <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored" (click)="saveStudent(selectedStudent)" >
     <i class="material-icons">add</i>
   </button>
 </div>
-
 
 <div class="mdl-grid demo-content">
   <div *ngFor="let student of this.performancesList | namePipe:selectedStudent" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">

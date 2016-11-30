@@ -1,0 +1,6 @@
+<div class="mdl-layout__header-row">
+  <button *ngFor="let student of savedStudentsList" class="mdl-chip mdl-chip--deletable">
+    <span class="mdl-chip__text">{{ student }}</span>
+    <button type="button" class="mdl-chip__action"><i class="material-icons">cancel</i></button>
+  </button>
+</div>
