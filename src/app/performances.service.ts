@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 @Injectable()
+
 export class PerformancesService {
 
   private performancesUrl = 'https://immense-basin-54112.herokuapp.com/api/performancesStudents';
