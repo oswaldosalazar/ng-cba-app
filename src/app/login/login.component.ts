@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   username : string = 'Login with fb';
   picture : string = './assets/images/user.jpg';
   userId: string;
-  fbStatus: boolean = true;
+  fbStatus: boolean = false;
 
   constructor(private fb: FacebookService) {
     let fbParams: FacebookInitParams = {
@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
     this.fb.init(fbParams);
   }
 
-
   FBLogin(): void {
     let permissions = new Array<string>();
 
@@ -35,13 +34,16 @@ export class LoginComponent implements OnInit {
       (response: FacebookLoginResponse) => {
         console.log(response);
         this.userId = response.authResponse.userID;
+        if(response.status === 'connected'){
+          this.fbStatus = true;
+        }
         console.log('FB userID: ', this.userId);
         let params = new Array<string>();
         this.fb.api("/me?fields=name,gender")
           .then( (user) => {
             this.picture = "https://graph.facebook.com/" + this.userId + "/picture?type=large";
             this.username = user.name;
-            this.fbStatus = true;
+            console.log(user);
             return user
           })
           .catch(function(error){

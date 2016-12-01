@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FacebookService, FacebookLoginStatus } from 'ng2-facebook-sdk/dist';
+import { FacebookService } from 'ng2-facebook-sdk/dist';
 
 
 @Component({
@@ -14,13 +14,12 @@ export class HomeComponent {
   fbStatus : boolean = false;
 
   statusFunction(): void {
-    // console.log(this.status)
     this.fb.getLoginStatus()
     .then((response) => {
-      if(response.status === 'unknown'){
-        this.fbStatus = false;
-      } else {
+      if(response.status === 'connected'){
         this.fbStatus = true;
+      } else {
+        this.fbStatus = false;
       }
       console.log(this.fbStatus);
     })
