@@ -21,6 +21,8 @@ export class StudentsComponent implements OnInit {
   selectedStudent: string = '';
   performancesList = [];
   savedStudentsList: any;
+  fbStatus: boolean;
+  fbUserId: string;
 
   constructor (private http: Http,
                private performances: PerformancesService,
@@ -55,6 +57,19 @@ export class StudentsComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.fb.getLoginStatus()
+    .then((response) => {
+      if(response.status === 'connected'){
+        this.fbStatus = true;
+      } else {
+        this.fbStatus = false;
+      }
+      this.fbUserId = response.authResponse.userID;
+      console.log(this.fbUserId);
+      console.log("From get Login status", this.fbStatus);
+    })
+
     this.getStudents()
     .then((data) => {
       this.students = data;
