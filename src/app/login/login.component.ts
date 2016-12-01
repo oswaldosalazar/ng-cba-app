@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   username : string = 'Login with fb';
   picture : string = './assets/images/user.jpg';
   userId: string;
-  fbStatus: boolean = false;
+  fbStatus: boolean;
 
   constructor(private fb: FacebookService) {
     let fbParams: FacebookInitParams = {
@@ -51,26 +51,27 @@ export class LoginComponent implements OnInit {
           }),
       (error: any) => console.error(error)
     });
-    this.fb.getLoginStatus()
-    .then((response) => {
-      if(response.status === 'unknown'){
-        this.fbStatus = false;
-      } else {
-        this.fbStatus = true;
-      }
-      console.log(this.fbStatus);
-    })
   }
 
   ngOnInit() {
+    this.fb.getLoginStatus()
+    .then((response) => {
+      if(response.status === 'connected'){
+        this.fbStatus = true;
+        this.fb.api("/me?fields=name,gender")
+          .then( (user) => {
+            this.picture = "https://graph.facebook.com/" + user.id + "/picture?type=large";
+            this.username = user.name;
+            console.log(user);
+            return user
+          })
+      } else {
+        this.fbStatus = false;
+      }
+      console.log(response)
+      console.log("From get Login status", this.fbStatus);
+    })
     console.log('From init', this.userId, this.fbStatus)
-    if(!this.fbStatus){
-      this.picture = './assets/images/user.jpg';
-      this.username = 'Login with fb';
-    } else {
-      this.picture = "https://graph.facebook.com/" + this.userId + "/picture?type=large";
-      this.username = this.username;
-    }
   }
 
 }

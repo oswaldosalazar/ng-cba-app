@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { Observable }     from 'rxjs/Observable';
-import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
+import { FacebookService } from 'ng2-facebook-sdk/dist';
 import { PerformancesService } from '../performances.service';
 import { StudentsService } from '../students.service';
 import { NamePipe } from '../name.pipe';
+import { Observable }     from 'rxjs/Observable';
+import 'rxjs/add/operator/toPromise';
 
 @Component({
   selector: 'app-students',
@@ -25,7 +24,8 @@ export class StudentsComponent implements OnInit {
 
   constructor (private http: Http,
                private performances: PerformancesService,
-               private savedStudents: StudentsService) { }
+               private savedStudents: StudentsService,
+               private fb: FacebookService) { }
 
 
   getStudents(): Promise<any> {
