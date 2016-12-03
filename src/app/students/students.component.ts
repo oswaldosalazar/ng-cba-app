@@ -20,7 +20,7 @@ export class StudentsComponent implements OnInit {
   allNames = [];
   selectedStudent: string = '';
   performancesList = [];
-  savedStudentsList: any;
+  savedStudentsList: any = [];
   fbStatus: boolean;
   fbUserId: string;
 
@@ -29,6 +29,17 @@ export class StudentsComponent implements OnInit {
                private savedStudents: StudentsService,
                private fb: FacebookService) { }
 
+  checkLoginStatusAndId() {
+    this.fb.getLoginStatus()
+    .then((response) => {
+      if(response.status === 'connected'){
+        this.fbStatus = true;
+        this.fbUserId = response.authResponse.userID;
+      } else {
+        this.fbStatus = false;
+      }
+    })
+  }
 
   getStudents(): Promise<any> {
     return this.http.get(this.studentsUrl)
@@ -36,13 +47,67 @@ export class StudentsComponent implements OnInit {
                .then(response => {
                  return response.json();
                })
+               .then((data) => {
+                 this.students = data;
+                 this.allNames = this.students.map((elem) => {
+                   return elem.name;
+                 })
+                 this.allNames = this.allNames.filter ( (elem, pos) => {
+                   return this.allNames.indexOf(elem) === pos
+                 })
+                 this.allNames = this.allNames.sort();
+               })
                .catch(this.handleError);
   }
+
+  getSaved() {
+    this.savedStudents.getSavedStudents(this.fbUserId)
+    .subscribe(data => {
+      console.log("Data from getSaved() saved.component", data)
+      this.savedStudentsList = data[0].saved_list;
+      },
+      err => {
+        console.log(err);
+      })
+  }
+
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);
   }
 
+  saveStudent(name) {
+    console.log("contains data from saveStudent students.component", this.savedStudents.containsData)
+    if(!this.savedStudents.containsData || this.savedStudents.containsData === undefined){
+      this.savedStudentsList.push(name);
+      this.savedStudents.postSavedStudents(this.fbUserId, this.savedStudentsList)
+      .subscribe(
+        data => {
+          this.savedStudents.getSavedStudents(this.fbUserId);
+          return true;
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    }
+    else {
+      console.log("in else", this.savedStudentsList)
+      this.savedStudentsList.push(name);
+      console.log("after push", this.savedStudentsList)
+      this.savedStudents.updateSavedStudents(this.savedStudentsList)
+      .subscribe(
+         data => {
+           // refresh the list
+           this.savedStudents.getSavedStudents(this.fbUserId);
+           return true;
+         },
+         err => {
+           console.log(err);
+         }
+      );
+    }
+  }
 
   getPerformances() {
     this.performances.getPerformances()
@@ -51,37 +116,27 @@ export class StudentsComponent implements OnInit {
     })
   }
 
-  saveStudent(saveName) {
-    this.savedStudents.savedStudents(saveName)
-    console.log(this.savedStudentsList);
-  }
 
   ngOnInit() {
-
+    this.checkLoginStatusAndId();
+    this.savedStudents.getSavedStudents(this.fbUserId);
     this.fb.getLoginStatus()
     .then((response) => {
       if(response.status === 'connected'){
         this.fbStatus = true;
+        this.fbUserId = response.authResponse.userID;
+        console.log(this.fbUserId);
+        this.getSaved();
       } else {
         this.fbStatus = false;
       }
-      this.fbUserId = response.authResponse.userID;
-      console.log(this.fbUserId);
       console.log("From get Login status", this.fbStatus);
     })
 
-    this.getStudents()
-    .then((data) => {
-      this.students = data;
-      this.allNames = this.students.map((elem) => {
-        return elem.name;
-      })
-      this.allNames = this.allNames.filter ( (elem, pos) => {
-        return this.allNames.indexOf(elem) === pos
-      })
-      this.allNames = this.allNames.sort();
-    })
+    this.getStudents();
+
     this.getPerformances();
-    this.savedStudentsList = this.savedStudents.sendSavedStudents();
+
+    this.savedStudents.getSavedStudents(this.fbUserId);
   }
 }

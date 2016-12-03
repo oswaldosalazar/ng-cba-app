@@ -17,9 +17,9 @@
 </div>
 <div class="mdl-layout__header-row">
   <h5>{{selectedStudent}}</h5>
-  <div class="mdl-layout-spacer"></div>
-  <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored" (click)="saveStudent(selectedStudent)" >
-    <i class="material-icons">add</i>
+  <div>&nbsp;&nbsp;</div>
+  <button *ngIf="fbStatus && selectedStudent.length" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored" (click)="saveStudent(selectedStudent)" >
+    <i class="material-icons">grade</i>
   </button>
 </div>
 

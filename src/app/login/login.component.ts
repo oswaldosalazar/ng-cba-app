@@ -32,7 +32,6 @@ export class LoginComponent implements OnInit {
     permissions = ['public_profile'];
     this.fb.login(permissions).then(
       (response: FacebookLoginResponse) => {
-        console.log(response);
         this.userId = response.authResponse.userID;
         if(response.status === 'connected'){
           this.fbStatus = true;
@@ -43,7 +42,6 @@ export class LoginComponent implements OnInit {
           .then( (user) => {
             this.picture = "https://graph.facebook.com/" + this.userId + "/picture?type=large";
             this.username = user.name;
-            console.log(user);
             return user
           })
           .catch(function(error){
@@ -51,6 +49,12 @@ export class LoginComponent implements OnInit {
           }),
       (error: any) => console.error(error)
     });
+  }
+
+  FBLogout() {
+    this.fb.logout()
+    this.username = 'Login with fb';
+    this.picture = './assets/images/user.jpg';
   }
 
   ngOnInit() {
@@ -62,16 +66,12 @@ export class LoginComponent implements OnInit {
           .then( (user) => {
             this.picture = "https://graph.facebook.com/" + user.id + "/picture?type=large";
             this.username = user.name;
-            console.log(user);
             return user
           })
       } else {
         this.fbStatus = false;
       }
-      console.log(response)
-      console.log("From get Login status", this.fbStatus);
     })
-    console.log('From init', this.userId, this.fbStatus)
   }
 
 }

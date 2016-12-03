@@ -5,15 +5,18 @@
   </span>
 </span>
 
-<div class="mdl-layout__header-row">
+<div *ngIf="fbStatus" class="mdl-layout__header-row">
   <h6>Upcoming activity for:</h6>
 </div>
+
+<div *ngIf="!fbStatus" class="mdl-layout__header-row">
+  <h6>Login to see your saved students.</h6>
+</div>
+
 <div class="mdl-layout__header-row">
   <h5>{{selectedStudent}}</h5>
   <div class="mdl-layout-spacer"></div>
 </div>
-
-{{ savedStudentsListTest }}
 
 <div class="mdl-grid demo-content">
   <div *ngFor="let savedStudent of this.performancesList | namePipe:selectedStudent" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">

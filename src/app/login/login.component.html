@@ -4,13 +4,13 @@
   <div class="demo-avatar-dropdown">
     <span>{{username}}</span>
     <div class="mdl-layout-spacer"></div>
-    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"  (click)='FBLogin()'> <i class="fa fa-facebook-official" aria-hidden="true"></i> </button>
+    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"  (click)='FBLogin()' [routerLink]="['/']"> <i class="fa fa-facebook-official" aria-hidden="true"></i> </button>
     <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
       <i class="material-icons" role="presentation">arrow_drop_down</i>
       <span class="visuallyhidden">Dropdown options from login</span>
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
-      <li class="mdl-menu__item">{{this.username}}</li>
+      <li class="mdl-menu__item" (click)="FBLogout()">Logout</li>
     </ul>
   </div>
 </header>
