@@ -12,6 +12,7 @@ import { AllShowsComponent } from './all-shows/all-shows.component';
 import { StudentsComponent } from './students/students.component';
 import { NamePipe } from './name.pipe';
 import { SavedComponent } from './saved/saved.component';
+import { DatePipe } from './date.pipe';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SavedComponent } from './saved/saved.component';
     AllShowsComponent,
     StudentsComponent,
     NamePipe,
-    SavedComponent
+    SavedComponent,
+    DatePipe
   ],
   imports: [
     BrowserModule,

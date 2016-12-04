@@ -3,6 +3,7 @@ import { FacebookService } from 'ng2-facebook-sdk/dist';
 import { PerformancesService } from '../performances.service';
 import { StudentsService } from '../students.service';
 import { NamePipe } from '../name.pipe';
+import { DatePipe } from '../date.pipe';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -21,6 +22,9 @@ export class SavedComponent implements OnInit {
   fbStatus: boolean;
   fbUserId: string;
   savedTest: any;
+
+  today = new Date(Date.now() - 25200000);
+  todayFormatted: string = this.today.toISOString();
 
   constructor( private performances: PerformancesService,
                public savedStudents: StudentsService,
@@ -111,10 +115,6 @@ export class SavedComponent implements OnInit {
       this.getSaved();
     }
     this.getPerformances();
-
-
-
-    // this.savedStudentsList = this.savedStudents.sendSavedStudents();
 
   }
 

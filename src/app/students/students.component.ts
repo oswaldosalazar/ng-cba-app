@@ -4,6 +4,7 @@ import { FacebookService } from 'ng2-facebook-sdk/dist';
 import { PerformancesService } from '../performances.service';
 import { StudentsService } from '../students.service';
 import { NamePipe } from '../name.pipe';
+import { DatePipe } from '../date.pipe';
 import { Observable }     from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 
@@ -23,6 +24,9 @@ export class StudentsComponent implements OnInit {
   savedStudentsList: any = [];
   fbStatus: boolean;
   fbUserId: string;
+
+  today = new Date(Date.now() - 25200000);
+  todayFormatted: string = this.today.toISOString();
 
   constructor (private http: Http,
                private performances: PerformancesService,
