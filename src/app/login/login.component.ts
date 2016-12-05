@@ -53,6 +53,9 @@ export class LoginComponent implements OnInit {
 
   FBLogout() {
     this.fb.logout()
+    .then(response => {
+      console.log("Logout?", response);
+    })
     this.username = 'Login with fb';
     this.picture = './assets/images/user.jpg';
   }
