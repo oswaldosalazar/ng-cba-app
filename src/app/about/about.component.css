@@ -2,18 +2,18 @@
   padding: 0 20px 0 32px;
 }
 .logo-image1 {
-  padding: 20px 20px 0 110px;
+  padding: 20px 0 20px 0;
   max-height: 150px;
 }
 .logo-image2 {
-  padding: 50px 30px 0 30px;
+  padding: 20px 0 20px 0;
   max-height: 100px;
 }
 .logo-image3 {
-  padding: 50px 20px 10px 50px;
+  padding: 30px 0 10px 0;
   max-height: 75px;
 }
 .logo-image4 {
-  padding: 20px 30px 0 20px;
+  padding: 20px 0 20px 0;
   max-height: 150px;
 }
