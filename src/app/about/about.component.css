@@ -1,0 +1,19 @@
+.about-box {
+  padding: 0 20px 0 32px;
+}
+.logo-image1 {
+  padding: 20px 20px 0 110px;
+  max-height: 150px;
+}
+.logo-image2 {
+  padding: 50px 30px 0 30px;
+  max-height: 100px;
+}
+.logo-image3 {
+  padding: 50px 20px 10px 50px;
+  max-height: 75px;
+}
+.logo-image4 {
+  padding: 20px 30px 0 20px;
+  max-height: 150px;
+}
