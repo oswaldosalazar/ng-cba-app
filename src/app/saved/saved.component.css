@@ -1,5 +1,8 @@
+.dateTimeText {
+  padding-right: 30px;
+}
 .castText {
-  padding: 0 30px 0 30px;
+  padding-right: 30px;
 }
 .sceneText {
   font-style: italic;

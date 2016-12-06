@@ -17,7 +17,6 @@
 </div>
 <div class="mdl-layout__header-row">
   <h4>{{selectedStudent}}&nbsp;&nbsp;</h4>
-  <!-- <div>&nbsp;&nbsp;</div> -->
   <button *ngIf="fbStatus && selectedStudent.length" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored" (click)="saveStudent(selectedStudent)" >
     <i class="material-icons">grade</i>
   </button>
@@ -25,7 +24,7 @@
 
 <div class="mdl-grid demo-content">
   <div *ngFor="let student of this.performancesList | namePipe:selectedStudent | datePipe:todayFormatted" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-    <h5>
+    <h5 class="dateTimeText">
       {{ student.dateTime | date }} @ {{ student.dateTime | date:'shortTime' }}
     </h5>
     <h5 class="castText">Cast: {{ student.cast }}</h5>
