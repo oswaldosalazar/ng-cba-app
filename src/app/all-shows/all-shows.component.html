@@ -1,5 +1,6 @@
 <div class="mdl-grid demo-content">
-  <div *ngFor="let item of this.performances | datePipe:todayFormatted" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+  <div *ngFor="let item of this.performances" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+    <!--Removed for demo purposes: | datePipe:todayFormatted -->
     <h5 class="dateTimeText">
       {{ item.dateTime | date }} @ {{ item.dateTime | date:'shortTime' }}
     </h5>

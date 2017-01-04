@@ -19,7 +19,8 @@
 </div>
 
 <div class="mdl-grid demo-content">
-  <div *ngFor="let savedStudent of this.performancesList | namePipe:selectedStudent | datePipe:todayFormatted" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+  <div *ngFor="let savedStudent of this.performancesList | namePipe:selectedStudent" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+    <!--Removed for demo purposes: | datePipe:todayFormatted -->
     <h5 class="dateTimeText">
       {{ savedStudent.dateTime | date }} @ {{ savedStudent.dateTime | date:'shortTime' }}
     </h5>
