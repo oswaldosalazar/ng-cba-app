@@ -12,16 +12,16 @@ The repo of the back-end code is:
 
 https://github.com/oswaldosalazar/CB-NUT-schedule2016
 
-This project uses:
+This project uses the following technologies:
 
-Front-end:
+Front-end
 * Angular 2 with Angular CLI
 * TypeScript
 * Material Design Lite (responsive and mobile-ready)
 * Social login with Facebook SDK
 * Firebase
 
-Back-end:
+Back-end
 * Express
 * PostgreSQL
 * Knex.js
